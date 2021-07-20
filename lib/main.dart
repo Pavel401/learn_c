@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(title: Text('LEARN C PROGRAMMING'),),
       body: Container(
         decoration:BoxDecoration(
-          
+          //here we use bg.png to create bg
           image: DecorationImage(image: AssetImage("assets/bg.png"), fit: BoxFit.fill),
           
         ),
