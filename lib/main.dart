@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:learn_c/widgets/homepage.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+Future<void> main()async {
+   WidgetsFlutterBinding.ensureInitialized();
+   //initializing Firebase
+  //  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  //we can also use upper single line code
+
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  
   
   // This widget is the root of your application.
   @override
@@ -25,6 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -34,12 +42,13 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: AppBar(title: Text('LEARN C PROGRAMMING'),),
       body: Container(
         decoration:BoxDecoration(
           //here we use bg.png to create bg
-          image: DecorationImage(image: AssetImage("assets/bg.png"), fit: BoxFit.fill),
+          image: DecorationImage(image: AssetImage("assets/BG.png"), fit: BoxFit.fill),
           
         ),
         child: HOMEPAGE(),
