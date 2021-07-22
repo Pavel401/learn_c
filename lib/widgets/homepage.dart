@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+ import 'package:learn_c/widgets/basic.dart';
+
 class HOMEPAGE extends StatelessWidget {
   const HOMEPAGE({ Key? key }) : super(key: key);
 
@@ -17,28 +18,36 @@ class HOMEPAGE extends StatelessWidget {
     return Container(
           margin: EdgeInsets.only(top: 120),
           child: GridView(
+            
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2 ),
 
             children:events.map((title){
               //Loop all events string 
 
               return GestureDetector(
+                
                 //GestureDetector is used to get ontap feedback with card 
                 child: Card(
+                  
                   margin: const EdgeInsets.all(20),
                   child: getCardByTitle(title),
                 ),
 
                 onTap: (){
+
+                  if(title == "BASICS")
+               {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => basic_page_ui()),);
+               }
                   //Ontap response will show a toast to the user
-                  Fluttertoast.showToast(
-                    msg:title +" "+ "click",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    fontSize: 16.0, 
+                 // Fluttertoast.showToast(
+                   // msg:title +" "+ "click",
+                   // toastLength: Toast.LENGTH_SHORT,
+                   // gravity: ToastGravity.CENTER,
+                   // fontSize: 16.0, 
                     
                     
-                    );
+                    //);
                 },
               );
 
@@ -54,6 +63,7 @@ class HOMEPAGE extends StatelessWidget {
 Column getCardByTitle(String title) {
   String img=""; //Image path
   if(title == "BASICS")
+  
   img="assets/BASICS.png";
   else if(title == "DSA")
   img="assets/DSA.png";
@@ -81,3 +91,4 @@ Column getCardByTitle(String title) {
   );
  
 }
+
