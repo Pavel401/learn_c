@@ -14,40 +14,50 @@ class HOMEPAGE extends StatelessWidget {
       "FUNTIONS",
       "POINTERS",
     ];
-    return Container(
-      margin: EdgeInsets.only(top: 120),
-      child: GridView(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          //here we use bg.png to create bg
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.fill),
+        ),
+        child: Container(
+          margin: EdgeInsets.only(top: 120),
+          child: GridView(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
 
-        children: events.map((title) {
-          //Loop all events string
+            children: events.map((title) {
+              //Loop all events string
 
-          return GestureDetector(
-            //GestureDetector is used to get ontap feedback with card
-            child: Card(
-              margin: const EdgeInsets.all(20),
-              child: getCardByTitle(title),
-            ),
+              return GestureDetector(
+                //GestureDetector is used to get ontap feedback with card
+                child: Card(
+                  elevation: 6.0,
+                  margin: const EdgeInsets.all(20),
+                  child: getCardByTitle(title),
+                ),
 
-            onTap: () {
-              if (title == "BASICS") {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => basic_page_ui()),
-                );
-              }
-              //Ontap response will show a toast to the user
-              // Fluttertoast.showToast(
-              // msg:title +" "+ "click",
-              // toastLength: Toast.LENGTH_SHORT,
-              // gravity: ToastGravity.CENTER,
-              // fontSize: 16.0,
+                onTap: () {
+                  if (title == "BASICS") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => basic_page_ui()),
+                    );
+                  }
+                  //Ontap response will show a toast to the user
+                  // Fluttertoast.showToast(
+                  // msg:title +" "+ "click",
+                  // toastLength: Toast.LENGTH_SHORT,
+                  // gravity: ToastGravity.CENTER,
+                  // fontSize: 16.0,
 
-              //);
-            },
-          );
-        }).toList(), //Here the map with all events succesfull returned card widgets
+                  //);
+                },
+              );
+            }).toList(), //Here the map with all events succesfull returned card widgets
+          ),
+        ),
       ),
     );
   }

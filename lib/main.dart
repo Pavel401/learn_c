@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_c/widgets/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:learn_c/widgets/splash.dart';
 Future<void> main()async {
    WidgetsFlutterBinding.ensureInitialized();
    //initializing Firebase
@@ -44,15 +45,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
   
     return Scaffold(
-      appBar: AppBar(title: Text('LEARN C PROGRAMMING'),),
-      body: Container(
-        decoration:BoxDecoration(
-          //here we use bg.png to create bg
-          image: DecorationImage(image: AssetImage("assets/BG.png"), fit: BoxFit.fill),
-          
-        ),
-        child: HOMEPAGE(),
-      ),
+      body: splash(),
     );
   }
 }

@@ -16,50 +16,58 @@ class _basic_page_uiState extends State<basic_page_ui> {
     final db = FirebaseFirestore.instance;
 
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: db.collection('BASIC').snapshots(),
-        builder: (context, AsyncSnapshot snapshots) {
-          if (!snapshots.hasData) {
-            return Center(
-              child: Container(
-                child: Column(
-                  children: [
-
-                    CircularProgressIndicator(),
-                    DefaultTextStyle(
-                      style: TextStyle(fontSize: 20.0),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          WavyAnimatedText('Loading Data...'),
-                        ],
-                        isRepeatingAnimation: true,
-                      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/BG.png"), fit: BoxFit.fill),
+        ),
+        child: Container(
+          padding: EdgeInsets.only(top: 120),
+          child: StreamBuilder<QuerySnapshot>(
+            stream: db.collection('BASIC').snapshots(),
+            builder: (context, AsyncSnapshot snapshots) {
+              if (!snapshots.hasData) {
+                return Center(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        DefaultTextStyle(
+                          style: TextStyle(fontSize: 20.0),
+                          child: AnimatedTextKit(
+                            animatedTexts: [
+                              WavyAnimatedText('Loading Data...'),
+                            ],
+                            isRepeatingAnimation: true,
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                  ],
-                ),
-              ),
-            );
-          } else if (snapshots.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
-          } else
-            return ListView(
-              children: snapshots.data!.docs.map<Widget>((doc) {
-                return Card(
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => detail_fetch(post: doc)));
-                    },
-                    
-                    title: Text(doc.data()['TITLE']),
                   ),
                 );
-              }).toList(),
-            );
-        },
+              } else if (snapshots.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              } else
+                return ListView(
+                  children: snapshots.data!.docs.map<Widget>((doc) {
+                    return Card(
+                      elevation: 6.0,
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      detail_fetch(post: doc)));
+                        },
+                        title: Text(doc.data()['TITLE']),
+                      ),
+                    );
+                  }).toList(),
+                );
+            },
+          ),
+        ),
       ),
     );
   }

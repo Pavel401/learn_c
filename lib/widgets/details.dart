@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learn_c/widgets/basic.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class detail_fetch extends StatefulWidget {
   final post;
@@ -46,7 +47,7 @@ class _detail_fetchState extends State<detail_fetch> {
                   child: Text(
                     widget.post['TITLE'],
                     style:
-                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold,fontFamily: 'GothamBold'),
                   ),
                 ),
               ),
@@ -92,7 +93,7 @@ class _detail_fetchState extends State<detail_fetch> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor:HexColor("#6200ea"),
         title: Text(currentTitle),
       ),
       body: _widgets.elementAt(_selectedindex),
@@ -107,9 +108,9 @@ class _detail_fetchState extends State<detail_fetch> {
               gap: 8,
               color: Colors.grey[800],
               haptic: true,
-              activeColor: Colors.purple,
+              activeColor: HexColor("#6200ea"),
               iconSize: 24,
-              tabBackgroundColor: Colors.purple.withOpacity(0.1),
+              tabBackgroundColor: HexColor("#9d46ff").withOpacity(0.1),
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
               duration: Duration(milliseconds: 500),
               tabs: [
